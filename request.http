@@ -1,0 +1,26 @@
+POST http://localhost:8080/users
+Content-Type: application/json
+
+{
+    "name":"Felipe Maela",
+    "username":"felipemaela04"
+}
+
+###
+
+GET http://localhost:8080/users
+
+###
+GET http://localhost:8080/users/58a5ec0e-12f5-4bd7-8512-1aecd732b70f
+
+###
+PUT http://localhost:8080/users/6df7d18a-9fa4-40d0-a44c-d9f3cd8e3c90
+Content-Type: application/json
+
+{
+    "name":"Felipe Nyusi",
+    "username":"nyusi"
+}
+
+###
+DELETE http://localhost:8080/users/6df7d18a-9fa4-40d0-a44c-d9f3cd8e3c90
