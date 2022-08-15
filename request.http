@@ -7,14 +7,13 @@ Content-Type: application/json
 }
 
 ###
-
 GET http://localhost:8080/users
 
 ###
-GET http://localhost:8080/users/58a5ec0e-12f5-4bd7-8512-1aecd732b70f
+GET http://localhost:8080/users/ad325a5b-571a-47e2-8c32-da1805fe1461
 
 ###
-PUT http://localhost:8080/users/6df7d18a-9fa4-40d0-a44c-d9f3cd8e3c90
+PUT http://localhost:8080/users/
 Content-Type: application/json
 
 {
@@ -23,4 +22,4 @@ Content-Type: application/json
 }
 
 ###
-DELETE http://localhost:8080/users/6df7d18a-9fa4-40d0-a44c-d9f3cd8e3c90
+DELETE http://localhost:8080/users/7a487300-59bc-4993-897a-ac5bb4a01316
