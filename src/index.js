@@ -1,15 +1,14 @@
-const { response } = require("express");
 const express = require("express");
 const { randomUUID } = require("crypto");
 const fs = require("fs");
-const { stringify } = require("querystring");
+const PORT = process.env.PORT || 8888;
 
 const app = express();
 app.use(express.json());
 let users = [];
 
 //=========== Read File ===========
-fs.readFile("users.json", "utf-8", (err, data) => {
+fs.readFile("database.json", "utf-8", (err, data) => {
     if(err) {
         console.log(err)
     } else {
@@ -19,16 +18,16 @@ fs.readFile("users.json", "utf-8", (err, data) => {
 
 //============POST Users ==============
 app.post("/users", (req, res) => {
-    const { name, username } = req.body;
+    const { name, email } = req.body;
     const user = {
         name,
-        username,
+        email,
         id: randomUUID(),
     };
 
     users.push(user);
 
-    creatUser()
+    userFile()
 
     return res.json(user);
 });
@@ -47,13 +46,13 @@ app.get("/users/:id", (req, res) => {
 //============PUT Users ==============
 app.put("/users/:id", (req, res) => {
     const {id} = req.params;
-    const { name, username } = req.body;
+    const { name, email } = req.body;
 
     const userIndex = users.findIndex((user) => user.id === id);
     users[userIndex] = {
         ...users[userIndex],
         name,
-        username,
+        email,
     };
     userFile()
     return res.json({message: "User change success full"});
@@ -71,7 +70,7 @@ app.delete("/users/:id", (req, res) => {
 
 //=========== Database Update ==========
 function userFile() {
-    fs.writeFileSync("users.json", JSON.stringify(users), (err) => {
+    fs.writeFileSync("database.json", JSON.stringify(users), (err) => {
         if(err) {
             console.log(err)
         } else {
@@ -80,4 +79,4 @@ function userFile() {
     })
 }
 
-app.listen(8080, () => console.log("O servidor esta rodando na port 8080"));
+app.listen(PORT, () => console.log(`O servidor esta rodando na port http://localhost:${PORT}`));
